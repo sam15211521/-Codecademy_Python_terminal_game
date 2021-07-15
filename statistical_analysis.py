@@ -26,6 +26,12 @@ data_dictionary_name_and_amount ={}     #this is where all data that has been an
 
 
 #def DataSorter():
+def raw_data_printer():
+    print('--------------')
+    print(Raw_input_data_list_individual)
+    print()   
+    print(data_dictionary_name_and_amount)
+
 
 def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in a list to form a dictionary with the catigory and the number of times that catigory occurs
     instances = []
@@ -38,7 +44,7 @@ def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in
 def correction(): #checks if data is correct, and allows for corrections
     checking = input('''\n Real quick, check the data above and make sure it looks correct. 
     Press Y for correct
-    Press N for not-correct'
+    Press N for not-correct
     Y/N: ''').upper()
     
     while checking != 'Y' and checking !='N':
@@ -50,12 +56,11 @@ def correction(): #checks if data is correct, and allows for corrections
         Y/N: ''').upper()
     
     if checking == 'N':
-        print('''OK.
+
+        raw_data_printer()
+        print('''
+        OK.
         ''')
-        print('--------------')
-        print(Raw_input_data_list_individual)
-        print()   
-        print(data_dictionary_name_and_amount)
         #may need to loop this section
         #checking_flag =True
         #while
@@ -66,15 +71,15 @@ def correction(): #checks if data is correct, and allows for corrections
         
         Enter choice: ''')
 
-        while data_corector not in [1,2,3]:
-            data_corector = int(input('''please enter: 
-            1 for wrong catigorys
+        while data_corector not in ['1','2','3']:
+            data_corector = (input('''please enter: 
+            1 for wrong catigories
             2 for wrong amount of instance
             3 for included instences in wrong catigory
             
             Enter choice: '''))
         if data_corector == 1:
-            pass
+            wrong_catigories = input('')
         if data_corector == 2:
             pass
         if data_corector == 3:
@@ -153,9 +158,18 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
             c_i_upper =continue_input.upper()
             
             
+            
             if c_i_upper != 'Y' and c_i_upper != 'N':
-                input ('\n Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
-                print()
+                while c_i_upper not in ['Y','N']:
+                    c_i_upper =input ('\n Improper response please type "Y" if you have more data or "N" if you do not have more data: ').upper()
+                    print()
+                    if c_i_upper == 'N':
+                        finished_with_data_input = True
+                    else:
+                        finished_with_data_input =False
+                
+
+
             else:
                 if c_i_upper == 'N':
                     finished_with_data_input = True
