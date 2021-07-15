@@ -38,9 +38,20 @@ def correction(): #checks if data is correct, and allows for corrections
     Press Y for correct
     Press N for not-correct'
     Y/N: ''').upper()
-    #if checking == 'Y':
-        
-    # if checking == 'N':
+    
+    while checking != 'Y' and checking !='N':
+        print('--------------')
+        print(Raw_input_data_list_individual)
+        print()   
+        print(data_dictionary_name_and_amount)
+        checking =input('''\n please enter "Y" if data is correct and "N" for if the data is incorrect: 
+        Y/N: ''').upper()
+    
+    if checking == 'Y':
+        print('OK')
+    elif checking == 'N':
+        print("Darn")
+
 
 
 
@@ -104,6 +115,9 @@ def UserInterface_DataInput():
                     finished_with_data_input = True
                 else:
                     finished_with_data_input =False
+        for catigory, value in data_dictionary_name_and_amount.items():
+            for i in range(value):
+                Raw_input_data_list_individual.append(catigory)
 
     print()
     print(Raw_input_data_list_individual)
