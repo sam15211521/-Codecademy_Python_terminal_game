@@ -32,10 +32,14 @@ def UserInterface():
     1. enter data individually (name only)'
     2. enter data with name and amount' 
     ''')
+    print()
+    
+    while opening != '1' and opening != '2':
+        opening = input('please ianput 1 for individualy or 2 for name and amount ')
+    
     if opening =='1':
-        finished_with_data_input =False
         
-
+        finished_with_data_input =False
         while finished_with_data_input == False:
             data_individual = input('Alright, please enter name of item ')
             Raw_input_data_list_individual.append(data_individual)
@@ -46,12 +50,17 @@ def UserInterface():
             
             if c_i_upper != 'Y' and c_i_upper != 'N':
                 input ('Inproper response please type "Y" if you have more data or "N" if you do not have more data ')
+                print()
             else:
                 if c_i_upper == 'N':
                     finished_with_data_input = True
                 else:
                     finished_with_data_input =False
-    print(Raw_input_data_list_individual)
+   
+        
+        #if opening == '2':
+    print(Raw_input_data_list_individual)   
+
         
 
 UserInterface()
