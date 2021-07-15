@@ -25,9 +25,8 @@ data_dictionary_name_and_amount ={}     #this is where all data that has been an
 
 #def DataSorter():
 
-def raw_data_to_grouped(lst=Raw_input_data_list_individual):
+def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in a list to form a dictionary with the catigory and the number of times that catigory occurs
     instances = []
-    couting_list =[]
     for name in lst:
         if name not in instances:
             instances.append(name)
@@ -40,26 +39,26 @@ def UserInterface():
     
     opening = input('''Hello, what would you like to do? (type number to do so)
     1. enter data individually (name only)'
-    2. enter data with name and amount' 
+    2. enter data with name and amount: ' 
     ''')
     print()
     
     while opening != '1' and opening != '2':
-        opening = input('please input 1 for individualy or 2 for catigory and amount ')
+        opening = input('please input 1 for individualy or 2 for catigory and amount: ')
     
     if opening =='1': #this part simply places your inputs into a list that can then be analysed at a later time
                       #only adds raw data to be analysed
         finished_with_data_input =False
         while finished_with_data_input == False:
-            data_individual = input('Alright, please enter name of item ')
+            data_individual = input('Alright, please enter name of item: ')
             Raw_input_data_list_individual.append(data_individual)
-            continue_input = input('Do you have more data to input? Y/N ')
+            continue_input = input('Do you have more data to input? Y/N: ')
             print()
             c_i_upper =continue_input.upper()
             
             
             if c_i_upper != 'Y' and c_i_upper != 'N':
-                input ('Inproper response please type "Y" if you have more data or "N" if you do not have more data ')
+                input ('Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
                 print()
             else:
                 if c_i_upper == 'N':
@@ -76,20 +75,20 @@ def UserInterface():
         name_number_list = []
         finished_with_data_input =False
         while finished_with_data_input == False:
-            data_input_name = input('\n Alright, please enter name of the catigory ')
+            data_input_name = input('\n Alright, please enter name of the catigory: ')
             name_number_list .append(data_input_name)
-            data_input_amount = input('\n please input amount of instances of the catigory ')
+            data_input_amount = input('\n please input amount of instances of the catigory: ')
             name_number_list.append(data_input_amount)
 
             data_dictionary_name_and_amount[name_number_list[0]] =int(name_number_list[1])
             name_number_list = []
-            continue_input = input('\n Do you have more data to input? Y/N ')
+            continue_input = input('\n Do you have more data to input? Y/N: ')
             
             c_i_upper =continue_input.upper()
             
             
             if c_i_upper != 'Y' and c_i_upper != 'N':
-                input ('\n Inproper response please type "Y" if you have more data or "N" if you do not have more data ')
+                input ('\n Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
                 print()
             else:
                 if c_i_upper == 'N':
