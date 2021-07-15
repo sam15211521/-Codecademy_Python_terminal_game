@@ -49,10 +49,45 @@ def correction(): #checks if data is correct, and allows for corrections
         checking =input('''\n please enter "Y" if data is correct and "N" for if the data is incorrect: 
         Y/N: ''').upper()
     
-    if checking == 'Y':
-        print('OK')
-    elif checking == 'N':
-        print("Darn")
+    if checking == 'N':
+        print('''OK.
+        ''')
+        print('--------------')
+        print(Raw_input_data_list_individual)
+        print()   
+        print(data_dictionary_name_and_amount)
+        #may need to loop this section
+        #checking_flag =True
+        #while
+        data_corector = input('''What is not corect about the data? Type the number of your answer.
+        1 The catigory(s) are wrong.
+        2 There are too many/ not enough instances of a catigory.
+        3 I accedently included instences of one catigory into another one. 
+        
+        Enter choice: ''')
+
+        while data_corector not in [1,2,3]:
+            data_corector = int(input('''please enter: 
+            1 for wrong catigorys
+            2 for wrong amount of instance
+            3 for included instences in wrong catigory
+            
+            Enter choice: '''))
+        if data_corector == 1:
+            pass
+        if data_corector == 2:
+            pass
+        if data_corector == 3:
+            pass
+
+
+
+
+
+
+    elif checking == 'Y':
+        print("Sounds good.")
+        TypeofAnalysis()
 
 
 
@@ -100,6 +135,13 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
             data_input_name = input('\n Alright, please enter name of the catigory: ')
             name_number_list .append(data_input_name)
             data_input_amount = input('\n Please input amount of instances of the catigory: ')
+            input_exception = True
+            while input_exception:
+                try:
+                    a = type(int(data_input_amount))
+                    input_exception = False
+                except:
+                    data_input_amount = input('\n Please input number (1, 10, 2999) amount: ')
             name_number_list.append(data_input_amount)
             if name_number_list[0] not in data_dictionary_name_and_amount:
                 data_dictionary_name_and_amount[name_number_list[0]] =int(name_number_list[1])
@@ -129,6 +171,7 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
     print(data_dictionary_name_and_amount)
     correction()
 
-        
+def TypeofAnalysis():
+    pass   
 
 UserInterface_DataInput()
