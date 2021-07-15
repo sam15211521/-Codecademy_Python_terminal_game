@@ -4,14 +4,16 @@ class DatatoAnalyse:
     def __init__(self, name='', amount=0):          #this program is only to be used with simple bar graph data with a name of the item and amount of that item.
         self.name = name
         self.amount = amount
-    
-#def information list
-
-#def summing_data():         #takes the data from amount and adds them together          #also keeps track of what data has what sum
- #   summing_dict ={}
 
 Raw_input_data_list_individual =[]      #this is where all raw data goes
 data_dictionary_name_and_amount ={}     #this is where all data that has been analysed to have the catigory and amount go
+
+
+#def information list
+
+#def summing_data():         #takes the data from amount and adds them together          #also keeps track of what data has what sum
+
+
 
 #def counting_data():
 
@@ -55,7 +57,7 @@ def correction(): #checks if data is correct, and allows for corrections
 
 
 
-def UserInterface_DataInput():
+def UserInterface_DataInput(): # The initial user interface for when you need to add data to the project
     
     opening = input('''Hello, what would you like to do? (type number to do so)
     1. Enter data individually (name only)
@@ -99,8 +101,10 @@ def UserInterface_DataInput():
             name_number_list .append(data_input_name)
             data_input_amount = input('\n Please input amount of instances of the catigory: ')
             name_number_list.append(data_input_amount)
-
-            data_dictionary_name_and_amount[name_number_list[0]] =int(name_number_list[1])
+            if name_number_list[0] not in data_dictionary_name_and_amount:
+                data_dictionary_name_and_amount[name_number_list[0]] =int(name_number_list[1])
+            else:
+                data_dictionary_name_and_amount[name_number_list[0]] +=int(name_number_list[1])
             name_number_list = []
             continue_input = input('\n Do you have more data to input? Y/N: ')
             
