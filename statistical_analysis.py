@@ -33,18 +33,27 @@ def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in
     for name in instances:
         data_dictionary_name_and_amount[name] =lst.count(name)
 
+def correction(): #checks if data is correct, and allows for corrections
+    checking = input('''\n Real quick, check the data above and make sure it looks correct. 
+    Press Y for correct
+    Press N for not-correct'
+    Y/N: ''').upper()
+    #if checking == 'Y':
+        
+    # if checking == 'N':
 
 
-def UserInterface():
+
+def UserInterface_DataInput():
     
     opening = input('''Hello, what would you like to do? (type number to do so)
-    1. enter data individually (name only)'
-    2. enter data with name and amount: ' 
-    ''')
+    1. Enter data individually (name only)
+    2. Enter data with name and amount 
+    Enter Here: ''')
     print()
     
     while opening != '1' and opening != '2':
-        opening = input('please input 1 for individualy or 2 for catigory and amount: ')
+        opening = input('Please input 1 for individualy or 2 for catigory and amount: ')
     
     if opening =='1': #this part simply places your inputs into a list that can then be analysed at a later time
                       #only adds raw data to be analysed
@@ -77,7 +86,7 @@ def UserInterface():
         while finished_with_data_input == False:
             data_input_name = input('\n Alright, please enter name of the catigory: ')
             name_number_list .append(data_input_name)
-            data_input_amount = input('\n please input amount of instances of the catigory: ')
+            data_input_amount = input('\n Please input amount of instances of the catigory: ')
             name_number_list.append(data_input_amount)
 
             data_dictionary_name_and_amount[name_number_list[0]] =int(name_number_list[1])
@@ -96,10 +105,12 @@ def UserInterface():
                 else:
                     finished_with_data_input =False
 
-
-    print(Raw_input_data_list_individual)   
+    print()
+    print(Raw_input_data_list_individual)
+    print()   
     print(data_dictionary_name_and_amount)
+    correction()
 
         
 
-UserInterface()
+UserInterface_DataInput()
