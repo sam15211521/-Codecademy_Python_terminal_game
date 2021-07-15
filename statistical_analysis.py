@@ -27,6 +27,7 @@ Raw_input_data_list_individual =[]
 
 
 def UserInterface():
+    
     opening = input('''Hello, what would you like to do? (type number to do so)
     1. enter data individually (name only)'
     2. enter data with name and amount' 
@@ -39,8 +40,11 @@ def UserInterface():
             data_individual = input('Alright, please enter name of item ')
             Raw_input_data_list_individual.append(data_individual)
             continue_input = input('Do you have more data to input? Y/N ')
+            print()
             c_i_upper =continue_input.upper()
-            if c_i_upper != 'Y' or c_i_upper != 'N':
+            
+            
+            if c_i_upper != 'Y' and c_i_upper != 'N':
                 input ('Inproper response please type "Y" if you have more data or "N" if you do not have more data ')
             else:
                 if c_i_upper == 'N':
