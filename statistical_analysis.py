@@ -54,80 +54,113 @@ def integer_checker(data_input_amount, correction_string): #checks if data is in
     return(data_input_amount)
 
 def correction(): #checks if data is correct, and allows for corrections
-    checking = input('''\n Real quick, check the data above and make sure it looks correct. 
-    Press Y for correct
-    Press N for not-correct
-    Y/N: ''').upper()
-    
-    while checking != 'Y' and checking !='N':
-        print('--------------')
-        print(Raw_input_data_list_individual)
-        print()   
-        print(data_dictionary_name_and_amount)
-        checking =input('''\n please enter "Y" if data is correct and "N" for if the data is incorrect: 
+    correction_variable = True
+    while correction_variable == True:
+        checking = input('''\n Real quick, check the data above and make sure it looks correct. 
+        Press Y for correct
+        Press N for not-correct
         Y/N: ''').upper()
-    
-    if checking == 'N':
-
-        raw_data_printer()
-        print('''
-        OK.
-        ''')
-        #may need to loop this section
-        #checking_flag =True
-        #while
-        data_corector = input('''What is not corect about the data? Type the number of your answer.
-        1 The catigory(s) are wrong.
-        2 There are too many/ not enough instances of a catigory.
-        3 I accedently included instences of one catigory into another one. 
         
-        Enter choice: ''')
-
-        while data_corector not in ['1','2','3']:
-            data_corector = (input('''please enter: 
-            1 for wrong catigories
-            2 for wrong amount of instance
-            3 for included instences in wrong catigory
-            
-            Enter choice: '''))
-        if data_corector == '1': #here is if you have made a wrong catigory
-            problem_catigory =''
-            catigory_counter =1
+        while checking != 'Y' and checking !='N':
             raw_data_printer()
-            print('Which of these catigories is worng?')
-            
-            for catigory in data_dictionary_name_and_amount.keys(): #generates the names of each curent catigory.
-                print('{} {}'.format(catigory_counter, catigory))
-                catigory_counter +=1
-                ####### need to make sure it is not a valueError
-            
-            wrong_catigories = input('Enter number: ')
-            problem_catigory = list(data_dictionary_name_and_amount)[int(wrong_catigories)-1] #finds the name of the wrong catigory.
-            What_to_do_to_catigory = input('What do you want to change the {} catigory to? '.format(problem_catigory)) #give the NEW name of the catigory.
-            data_dictionary_name_and_amount[What_to_do_to_catigory] = data_dictionary_name_and_amount.pop(problem_catigory) #changes the name of the key into the new name.
-            instance_index = 0
-            for instance in Raw_input_data_list_individual: #replaces the values in the
-            
-                if instance == problem_catigory:
-                    Raw_input_data_list_individual[instance_index] = What_to_do_to_catigory
-                instance_index +=1
+            checking =input('''\n please enter "Y" if data is correct and "N" for if the data is incorrect: 
+            Y/N: ''').upper()
+        
+        if checking == 'N':
+
             raw_data_printer()
+            print('''
+            OK.
+            ''')
+            #may need to loop this section
+            #checking_flag =True
+            #while
+            data_corector = input('''What is not corect about the data? Type the number of your answer.
+            1 The catigory(s) are wrong.
+            2 There are too many/ not enough instances of a catigory.
+            3 I accedently included instences of one catigory into another one. 
+            4 Actualy the data is correct.
             
+            Enter choice: ''')
+
+            while data_corector not in ['1','2','3', '4']:
+                data_corector = (input('''please enter: 
+                1 for wrong catigories.
+                2 for wrong amount of instance.
+                3 for included instences in wrong catigory.
+                4 for data is correct.
+                Enter choice: '''))
+            
+            
+            
+            if data_corector == '1': #here is if you have made a wrong catigory
+                problem_catigory =''
+                catigory_counter =1
+                raw_data_printer()
+                print('Which of these catigories is wrong?')
+                
+                for catigory in data_dictionary_name_and_amount.keys(): #generates the names of each curent catigory.
+                    print('{} {}'.format(catigory_counter, catigory))
+                    catigory_counter +=1
+                    ####### need to make sure it is not a valueError
+                
+                wrong_catigories = input('Enter number: ')
+
+                wrong_catigories = integer_checker(wrong_catigories, 'Please enter a choice as a number: ') #probably need to make this simalar to right abouve
 
 
-        if data_corector == '2':
-            pass
-        if data_corector == '3':
-            pass
+                problem_catigory = list(data_dictionary_name_and_amount)[int(wrong_catigories)-1] #finds the name of the wrong catigory.
+                What_to_do_to_catigory = input('What do you want to change the "{}" catigory to? '.format(problem_catigory)) #give the NEW name of the catigory.
+                data_dictionary_name_and_amount[What_to_do_to_catigory] = data_dictionary_name_and_amount.pop(problem_catigory) #changes the name of the key into the new name.
+                instance_index = 0
+                for instance in Raw_input_data_list_individual: #replaces the values in the list with a value in the dictionary key
+                
+                    if instance == problem_catigory:
+                        Raw_input_data_list_individual[instance_index] = What_to_do_to_catigory
+                    instance_index +=1
+                raw_data_printer()
+                
+                
+
+
+            if data_corector == '2': #This is for if you need to change the amount of a catigory
+                problem_catigory =''
+                catigory_counter =1
+                raw_data_printer()
+                print('Which of these catigories has the wrong amount?')
+                                
+                for catigory in data_dictionary_name_and_amount.keys(): #generates the names of each curent
+                    print('{} {}'.format(catigory_counter, catigory))
+                    catigory_counter +=1
+                    ####### need to make sure it is not a valueError
+                                
+                wrong_catigories = input('Enter number: ')
+                wrong_catigories = integer_checker(wrong_catigories, 'Please enter a choice as a number: ')
+                print(wrong_catigories)
+            
+            
+            
+            
+            
+            
+            
+            if data_corector == '3': # This is to exchange amount in one catigory to another
+                pass
+
+            if data_corector == '4':
+                print("Sounds good.")
+                correction_variable = False
+                TypeofAnalysis()
 
 
 
 
 
 
-    elif checking == 'Y':
-        print("Sounds good.")
-        TypeofAnalysis()
+        elif checking == 'Y':
+            print("Sounds good.")
+            correction_variable = False
+            TypeofAnalysis()
 
 
 
@@ -213,13 +246,10 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
             for i in range(value):
                 Raw_input_data_list_individual.append(catigory)
 
-    print()
-    print(Raw_input_data_list_individual)
-    print()   
-    print(data_dictionary_name_and_amount)
+    raw_data_printer()
     correction()
 
 def TypeofAnalysis():
-    pass   
+    print("\n This should be a type of alysis")   
 
 UserInterface_DataInput()
