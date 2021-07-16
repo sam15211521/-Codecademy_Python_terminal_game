@@ -9,6 +9,7 @@ Raw_input_data_list_individual =[]      #this is where all raw data goes
 data_dictionary_name_and_amount ={}     #this is where all data that has been analysed to have the catigory and amount go
 
 
+
 #def information list
 
 #def summing_data():         #takes the data from amount and adds them together          #also keeps track of what data has what sum
@@ -18,14 +19,24 @@ data_dictionary_name_and_amount ={}     #this is where all data that has been an
 #def counting_data():
 
 
-#def mean():
-
-#def median():
+def mean():
     
-#def mode():
+    pass
+
+def median():
+    pass
+    
+def mode():
+    pass
+
+def standard_deviation():
+    pass
+
+def bar_graph():
+    pass
 
 
-#def DataSorter():
+
 def raw_data_printer():
     print('--------------')
     print(Raw_input_data_list_individual)
@@ -72,7 +83,7 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
                       #only adds raw data to be analysed
         finished_with_data_input =False
         while finished_with_data_input == False:
-            data_individual = input('Alright, please enter name of item: ')
+            data_individual = input('Alright, please enter name of catigory item: ')
             Raw_input_data_list_individual.append(data_individual)
             continue_input = input('Do you have more data to input? Y/N: ')
             print()
@@ -260,12 +271,28 @@ def correction(): #checks if data is correct, and allows for corrections
             TypeofAnalysis()
 
 
+only_bar_and_mode = False
+
+def int_converter(dict): #converts 
+    temp_data_dictionary ={}
+    try:
+        for key in dict:
+            a = int(key)
+            if type(a) ==int:
+                temp_data_dictionary[a] = dict[key]
+    except:
+        print('I am sorry, the only data analysis we can do with what you have given me is via a bar graph and the mode.')
+        return True
+    return temp_data_dictionary
+            
+    
 def TypeofAnalysis():
     mean_flag =False
     median_flag =False
     mode_flag = False
     S_D_flag = False
     bar_graph_flag =False
+   # only_bar_and_mode = False
     
     analysis_choice_flags =[]
     analysis_choice_types = ['Mean', 'Median', 'Mode', 'Standard deviation', 'Bar graph']
@@ -304,6 +331,42 @@ def TypeofAnalysis():
             print(analysis_types)
         else:
             print('\n Please input a number between 1 and 6\n\n')
-    #print("\n This should be a type of alysis")   
+    
+    
+    
+    for flag in analysis_choice_flags: #this part determins sets which analysis functions are called
+        if only_bar_and_mode == True:
+            standard_deviation()
+            mode()
+            show_all_data()
+            break
+        
+        elif flag == 'Mean':
+            mean()
+        elif flag == 'Median':
+            median()
+        elif flag == 'Mode':
+            mode()
+        elif flag == 'Standard deviation':
+            standard_deviation()
+        elif flag == 'Bar graph':
+            bar_graph()
+    a = int_converter(data_dictionary_name_and_amount).copy()
+    print(a)
+    
+
+
+    
+    
+    #print(data_dictionary_name_and_amount)
+    #show_all_data()
+
+
+
+
+def show_all_data(): #this shows all the data analysis
+    pass       
+
+
 
 UserInterface_DataInput()
