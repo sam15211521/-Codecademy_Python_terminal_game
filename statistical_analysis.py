@@ -54,8 +54,14 @@ def integer_checker(data_input_amount, correction_string): #checks if data is in
     return(data_input_amount)
 
 def correction(): #checks if data is correct, and allows for corrections
+    
+    
+    
+    
+    
     correction_variable = True
     while correction_variable == True:
+
         checking = input('''\n Real quick, check the data above and make sure it looks correct. 
         Press Y for correct
         Press N for not-correct
@@ -70,8 +76,7 @@ def correction(): #checks if data is correct, and allows for corrections
 
             raw_data_printer()
             print('''
-            OK.
-            ''')
+            OK.''')
             #may need to loop this section
             #checking_flag =True
             #while
@@ -103,8 +108,15 @@ def correction(): #checks if data is correct, and allows for corrections
                     print('{} {}'.format(catigory_counter, catigory))
                     catigory_counter +=1
                     ####### need to make sure it is not a valueError
+                print("{} Actually they look correct".format(catigory_counter))
+                
                 
                 wrong_catigories = input('Enter number: ')
+
+                if wrong_catigories == str (catigory_counter):
+                    raw_data_printer() 
+                    continue
+                    
 
                 wrong_catigories = integer_checker(wrong_catigories, 'Please enter a choice as a number: ') #probably need to make this simalar to right abouve
 
@@ -126,17 +138,32 @@ def correction(): #checks if data is correct, and allows for corrections
             if data_corector == '2': #This is for if you need to change the amount of a catigory
                 problem_catigory =''
                 catigory_counter =1
+                catigory_names =[]
                 raw_data_printer()
                 print('Which of these catigories has the wrong amount?')
                                 
                 for catigory in data_dictionary_name_and_amount.keys(): #generates the names of each curent
                     print('{} {}'.format(catigory_counter, catigory))
                     catigory_counter +=1
+                    catigory_names.append(catigory)
                     ####### need to make sure it is not a valueError
-                                
+                print("{} Actually they look correct".format(catigory_counter))
+                
+                
                 wrong_catigories = input('Enter number: ')
-                wrong_catigories = integer_checker(wrong_catigories, 'Please enter a choice as a number: ')
-                print(wrong_catigories)
+
+                if wrong_catigories == str (catigory_counter):
+                    raw_data_printer() 
+                    continue
+                wrong_catigories = input('Enter number: ')
+                
+                wrong_catigories = integer_checker(wrong_catigories, 'Please enter a choice as a number: ') #generates the number used to find the problem catigory.
+                print(raw_data_printer())
+                amount_to_change = input('The current amount for "{}" is "{}" what do you want to change it to? '.format(str(catigory_names[int(wrong_catigories)-1]), str(data_dictionary_name_and_amount[catigory_names[int(wrong_catigories)-1]])))
+                amount_to_change = integer_checker(amount_to_change, "\n I'm sorry only accept number amounts, please enter a number amount: ")
+                data_dictionary_name_and_amount[catigory_names[int(wrong_catigories)-1]] = amount_to_change
+                print(raw_data_printer())
+                
             
             
             
