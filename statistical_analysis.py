@@ -31,6 +31,8 @@ def raw_data_printer():
     print(Raw_input_data_list_individual)
     print()   
     print(data_dictionary_name_and_amount)
+    print()
+    print('--------------')
 
 
 def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in a list to form a dictionary with the catigory and the number of times that catigory occurs
@@ -40,6 +42,16 @@ def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in
             instances.append(name)
     for name in instances:
         data_dictionary_name_and_amount[name] =lst.count(name)
+
+def integer_checker(data_input_amount, correction_string): #checks if data is in an integer form
+    input_exception = True
+    while input_exception:
+        try:
+            type(int(data_input_amount))
+            input_exception = False
+        except:
+            data_input_amount = input(correction_string)
+    return(data_input_amount)
 
 def correction(): #checks if data is correct, and allows for corrections
     checking = input('''\n Real quick, check the data above and make sure it looks correct. 
@@ -78,11 +90,34 @@ def correction(): #checks if data is correct, and allows for corrections
             3 for included instences in wrong catigory
             
             Enter choice: '''))
-        if data_corector == 1:
-            wrong_catigories = input('')
-        if data_corector == 2:
+        if data_corector == '1': #here is if you have made a wrong catigory
+            problem_catigory =''
+            catigory_counter =1
+            raw_data_printer()
+            print('Which of these catigories is worng?')
+            
+            for catigory in data_dictionary_name_and_amount.keys(): #generates the names of each curent catigory.
+                print('{} {}'.format(catigory_counter, catigory))
+                catigory_counter +=1
+                ####### need to make sure it is not a valueError
+            
+            wrong_catigories = input('Enter number: ')
+            problem_catigory = list(data_dictionary_name_and_amount)[int(wrong_catigories)-1] #finds the name of the wrong catigory.
+            What_to_do_to_catigory = input('What do you want to change the {} catigory to? '.format(problem_catigory)) #give the NEW name of the catigory.
+            data_dictionary_name_and_amount[What_to_do_to_catigory] = data_dictionary_name_and_amount.pop(problem_catigory) #changes the name of the key into the new name.
+            instance_index = 0
+            for instance in Raw_input_data_list_individual: #replaces the values in the
+            
+                if instance == problem_catigory:
+                    Raw_input_data_list_individual[instance_index] = What_to_do_to_catigory
+                instance_index +=1
+            raw_data_printer()
+            
+
+
+        if data_corector == '2':
             pass
-        if data_corector == 3:
+        if data_corector == '3':
             pass
 
 
@@ -140,14 +175,13 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
             data_input_name = input('\n Alright, please enter name of the catigory: ')
             name_number_list .append(data_input_name)
             data_input_amount = input('\n Please input amount of instances of the catigory: ')
-            input_exception = True
-            while input_exception:
-                try:
-                    a = type(int(data_input_amount))
-                    input_exception = False
-                except:
-                    data_input_amount = input('\n Please input number (1, 10, 2999) amount: ')
-            name_number_list.append(data_input_amount)
+            
+            
+            data_input_amount =integer_checker(data_input_amount, '\n Please input number (1, 10, 2999) amount: ') #checks if data is in an integer form or not
+           
+            
+            
+            name_number_list.append(data_input_amount)          
             if name_number_list[0] not in data_dictionary_name_and_amount:
                 data_dictionary_name_and_amount[name_number_list[0]] =int(name_number_list[1])
             else:

@@ -17,7 +17,7 @@ look into making a program that print out a graph using the | characer
 
 here are a list of functions i need for this to work:
 
-1. graphing function
+1. graphing function   x   1.0 is done
 
 2. sorting function to sort data into proper areas
 
