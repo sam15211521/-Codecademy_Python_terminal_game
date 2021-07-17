@@ -1,3 +1,4 @@
+import statistics
 class DatatoAnalyse:
     data_total_amount = 0           #maybe need this, maybe not
     
@@ -19,21 +20,45 @@ data_dictionary_name_and_amount ={}     #this is where all data that has been an
 #def counting_data():
 
 
-def mean():
+def find_mean(lst = Raw_input_data_list_individual):
+    return statistics.mean(lst)
     
-    pass
-
-def median():
-    pass
     
-def mode():
-    pass
 
-def standard_deviation():
-    pass
+def find_median(lst = Raw_input_data_list_individual):
+    return statistics.median(lst)
+    
+    
+def find_mode(lst = Raw_input_data_list_individual):
+    return statistics.mode(lst)    
 
-def bar_graph():
-    pass
+def find_standard_deviation(lst = Raw_input_data_list_individual):
+    return statistics.stdev(lst)
+    
+
+def find_bar_graph(dic = data_dictionary_name_and_amount):#num_of_lines, units ='unitless'):
+    bar_graphic = ''
+    for catigory, amount in dic.items():
+        
+        catigory_string = str(catigory)
+        amount_of_instences = amount
+        count =': '        
+        
+        for i in range(amount):
+            count += '|'
+            
+        line_string = catigory_string + ' -- ' + str(amount_of_instences) + count
+        bar_graphic += line_string +'\n'
+    return bar_graphic
+    
+    print('bar graph will make')
+    
+    #count = ''
+    
+    #for i in range(num_of_lines):
+    #    count += '|'
+    #return str(count) + '   ' + str(len(count)) +' ' +units
+    #pass
 
 
 
@@ -273,7 +298,7 @@ def correction(): #checks if data is correct, and allows for corrections
 
 only_bar_and_mode = False
 
-def int_converter(dict): #converts 
+def int_converter(dict): #converts strings to integers
     temp_data_dictionary ={}
     try:
         for key in dict:
@@ -282,17 +307,13 @@ def int_converter(dict): #converts
                 temp_data_dictionary[a] = dict[key]
     except:
         print('I am sorry, the only data analysis we can do with what you have given me is via a bar graph and the mode.')
-        return True
-    return temp_data_dictionary
+        return False
+    return temp_data_dictionary,
             
     
 def TypeofAnalysis():
-    mean_flag =False
-    median_flag =False
-    mode_flag = False
-    S_D_flag = False
     bar_graph_flag =False
-   # only_bar_and_mode = False
+    only_bar_and_mode = False
     
     analysis_choice_flags =[]
     analysis_choice_types = ['Mean', 'Median', 'Mode', 'Standard deviation', 'Bar graph']
@@ -331,28 +352,34 @@ def TypeofAnalysis():
             print(analysis_types)
         else:
             print('\n Please input a number between 1 and 6\n\n')
+    #print(analysis_choice_flags)
     
     
     
-    for flag in analysis_choice_flags: #this part determins sets which analysis functions are called
-        if only_bar_and_mode == True:
+    if int_converter(data_dictionary_name_and_amount) ==False: #checks to see if all types of data analysis can be used.
+        only_bar_and_mode = True #if data has catigories that are not integers.
+
+    print(Raw_input_data_list_individual)
+
+    if only_bar_and_mode == True:
             standard_deviation()
             mode()
             show_all_data()
-            break
-        
-        elif flag == 'Mean':
-            mean()
-        elif flag == 'Median':
-            median()
-        elif flag == 'Mode':
-            mode()
-        elif flag == 'Standard deviation':
-            standard_deviation()
-        elif flag == 'Bar graph':
-            bar_graph()
-    a = int_converter(data_dictionary_name_and_amount).copy()
-    print(a)
+            
+    else:
+        for flag in analysis_choice_flags: #this part determins sets which analysis functions are called
+            if flag == 'Mean':
+                find_mean()
+            elif flag == 'Median':
+                find_median()
+            elif flag == 'Mode':
+                find_mode()
+            elif flag == 'Standard deviation':
+                find_standard_deviation()
+            elif flag == 'Bar graph':
+                find_bar_graph()
+
+    #print(a)
     
 
 
@@ -365,8 +392,10 @@ def TypeofAnalysis():
 
 
 def show_all_data(): #this shows all the data analysis
+    print('I will now show all data')
     pass       
 
 
 
 UserInterface_DataInput()
+show_all_data()
