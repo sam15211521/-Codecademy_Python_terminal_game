@@ -10,27 +10,32 @@ Raw_input_data_list_individual =[]      #this is where all raw data goes
 data_dictionary_name_and_amount ={}     #this is where all data that has been analysed to have the catigory and amount go
 
 def find_mean(lst = Raw_input_data_list_individual):
+    global mean_flag 
     mean_flag = True
     return statistics.mean(lst)
     
     
 
 def find_median(lst = Raw_input_data_list_individual):
+    global median_flag 
     median_flag = True
     return statistics.median(lst)
     
     
 def find_mode(lst = Raw_input_data_list_individual):
+    global mode_flag 
     mode_flag = True
     return statistics.mode(lst)    
 
 def find_standard_deviation(lst = Raw_input_data_list_individual):
+    global standard_deviation_flag 
     standard_deviation_flag = True
     return statistics.stdev(lst)
     
 
 def find_bar_graph(dic = data_dictionary_name_and_amount):#num_of_lines, units ='unitless'):
-    bar_graph_flag = True
+    global bar_graph_flag 
+    bar_graph_flag= True
     bar_graphic = ''
     for catigory, amount in dic.items():
         
@@ -103,6 +108,11 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
         finished_with_data_input =False
         while finished_with_data_input == False:
             data_individual = input('Alright, please enter name of catigory item: ')
+            try:
+                type(int(data_individual)) == int
+                data_individual = int(data_individual)
+            except:
+                continue
             Raw_input_data_list_individual.append(data_individual)
             continue_input = input('Do you have more data to input? Y/N: ')
             print()
@@ -378,7 +388,7 @@ def TypeofAnalysis():
             elif flag == 'Bar graph':
                 find_bar_graph()
 
-    print(data_dictionary_name_and_amount)
+    #print(data_dictionary_name_and_amount)
     
 
 
@@ -392,14 +402,14 @@ def TypeofAnalysis():
 
 def show_all_data(): #this shows all the data analysis
     print('\n \n \n \n')
-    print(' First, here is your raw data {} \n {} \n'.format(Raw_input_data_list_individual, data_dictionary_name_and_amount ))
+    print(' First, here is your raw data \n \n {} \n {} \n \n'.format(Raw_input_data_list_individual, data_dictionary_name_and_amount ))
     if mean_flag ==True:
         print('The mean of your data is: \n {} \n---\n'.format(find_mean()))
-    elif mode_flag ==True:
+    if mode_flag ==True:
         print('The mode of your data is: \n {} \n---\n'.format(find_mode()))
-    elif median_flag ==True:
+    if median_flag ==True:
         print('The median of your data is: \n {} \n---\n'.format(find_median()))
-    elif standard_deviation_flag == True:
+    if standard_deviation_flag == True:
         print('The standard deviation of your data is: \n {} \n---\n'.format(find_standard_deviation()))
     
        
