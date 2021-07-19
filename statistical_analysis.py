@@ -1,42 +1,36 @@
 import statistics
-class DatatoAnalyse:
-    data_total_amount = 0           #maybe need this, maybe not
-    
-    def __init__(self, name='', amount=0):          #this program is only to be used with simple bar graph data with a name of the item and amount of that item.
-        self.name = name
-        self.amount = amount
+
+mean_flag = False
+median_flag = False
+mode_flag = False
+standard_deviation_flag = False
+bar_graph_flag = False
 
 Raw_input_data_list_individual =[]      #this is where all raw data goes
 data_dictionary_name_and_amount ={}     #this is where all data that has been analysed to have the catigory and amount go
 
-
-
-#def information list
-
-#def summing_data():         #takes the data from amount and adds them together          #also keeps track of what data has what sum
-
-
-
-#def counting_data():
-
-
 def find_mean(lst = Raw_input_data_list_individual):
+    mean_flag = True
     return statistics.mean(lst)
     
     
 
 def find_median(lst = Raw_input_data_list_individual):
+    median_flag = True
     return statistics.median(lst)
     
     
 def find_mode(lst = Raw_input_data_list_individual):
+    mode_flag = True
     return statistics.mode(lst)    
 
 def find_standard_deviation(lst = Raw_input_data_list_individual):
+    standard_deviation_flag = True
     return statistics.stdev(lst)
     
 
 def find_bar_graph(dic = data_dictionary_name_and_amount):#num_of_lines, units ='unitless'):
+    bar_graph_flag = True
     bar_graphic = ''
     for catigory, amount in dic.items():
         
@@ -171,6 +165,11 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
                 else:
                     finished_with_data_input =False
         for catigory, value in data_dictionary_name_and_amount.items():
+            try:
+                if type(int(catigory)) == int:
+                    catigory = int(catigory)
+            except:
+                continue
             for i in range(value):
                 Raw_input_data_list_individual.append(catigory)
 
@@ -379,7 +378,7 @@ def TypeofAnalysis():
             elif flag == 'Bar graph':
                 find_bar_graph()
 
-    #print(a)
+    print(data_dictionary_name_and_amount)
     
 
 
@@ -392,8 +391,18 @@ def TypeofAnalysis():
 
 
 def show_all_data(): #this shows all the data analysis
-    print('I will now show all data')
-    pass       
+    print('\n \n \n \n')
+    print(' First, here is your raw data {} \n {} \n'.format(Raw_input_data_list_individual, data_dictionary_name_and_amount ))
+    if mean_flag ==True:
+        print('The mean of your data is: \n {} \n---\n'.format(find_mean()))
+    elif mode_flag ==True:
+        print('The mode of your data is: \n {} \n---\n'.format(find_mode()))
+    elif median_flag ==True:
+        print('The median of your data is: \n {} \n---\n'.format(find_median()))
+    elif standard_deviation_flag == True:
+        print('The standard deviation of your data is: \n {} \n---\n'.format(find_standard_deviation()))
+    
+       
 
 
 
