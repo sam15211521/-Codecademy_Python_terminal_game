@@ -63,16 +63,14 @@ def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in
         data_dictionary_name_and_amount[name] =lst.count(name)
 
 
-
 def integer_checker(data_input_amount, correction_string): #checks if data is in an integer form
-    input_exception = True
-    while input_exception:
-        try:
-            type(int(data_input_amount))
-            input_exception = False
-        except:
-            data_input_amount = correction_string
-    return data_input_amount
+    try:
+        int(data_input_amount)
+        input_exception = False
+    except:
+        input_exception = False
+        return correction_string        
+    return int(data_input_amount)
 
 
 
@@ -95,6 +93,7 @@ if opening =='1': #this part simply places your inputs into a list that can then
         data_individual = integer_checker(data_individual, data_individual)
 
         Raw_input_data_list_individual.append(data_individual)
+
         continue_input = input('Do you have more data to input? Y/N: ').upper()
         print()
         
@@ -114,6 +113,16 @@ if opening =='1': #this part simply places your inputs into a list that can then
 exit
 
 
+
+
+
+
+
+
+
+
+
+
 if opening == '2':  #instead of raw data, makes a dictionary with the name of a catigory and the number of instances with it.
     name_number_list = []
     finished_with_data_input =False
@@ -121,10 +130,35 @@ if opening == '2':  #instead of raw data, makes a dictionary with the name of a 
     while finished_with_data_input == False: #checks if finished with data input
         data_input_name = input('\n Alright, please enter name of the catigory: ')
 
-        integer_checker()
+        #integer_checker()
 
 
         name_number_list .append(data_input_name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
