@@ -1,11 +1,5 @@
 import statistics
 
-mean_flag = False
-median_flag = False
-mode_flag = False
-standard_deviation_flag = False
-bar_graph_flag = False
-
 Raw_input_data_list_individual =[]      #this is where all raw data goes
 data_dictionary_name_and_amount ={}     #this is where all data that has been analysed to have the catigory and amount go
 
@@ -68,6 +62,8 @@ def raw_data_to_grouped(lst=Raw_input_data_list_individual): #groups raw data in
     for name in instances:
         data_dictionary_name_and_amount[name] =lst.count(name)
 
+
+
 def integer_checker(data_input_amount, correction_string): #checks if data is in an integer form
     input_exception = True
     while input_exception:
@@ -75,8 +71,60 @@ def integer_checker(data_input_amount, correction_string): #checks if data is in
             type(int(data_input_amount))
             input_exception = False
         except:
-            data_input_amount = input(correction_string)
-    return(data_input_amount)
+            data_input_amount = correction_string
+    return data_input_amount
+
+
+
+opening = input('''Hello, what would you like to do? (type number to do so)
+    1. Enter data individually (name only)
+    2. Enter data with name and amount 
+    Enter Here: ''')
+print()
+
+while opening != '1' and opening != '2':
+        opening = input('Please input 1 for individualy or 2 for catigory and amount: ')
+
+if opening =='1': #this part simply places your inputs into a list that can then be analysed at a later time
+                      #only adds raw data to be analysed
+    
+    finished_with_data_input = False
+    while finished_with_data_input == False:
+        data_individual = input('Alright, please enter name of catigory item: ')
+        
+        data_individual = integer_checker(data_individual, data_individual)
+
+        Raw_input_data_list_individual.append(data_individual)
+        continue_input = input('Do you have more data to input? Y/N: ').upper()
+        print()
+        
+
+
+        if continue_input != 'Y' and continue_input != 'N': #this part determins if you need to add more code
+                    input ('Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
+                    print()
+        else:
+                    if continue_input == 'N':
+                        finished_with_data_input = True
+                    else:
+                        finished_with_data_input =False
+    print(Raw_input_data_list_individual)
+
+    raw_data_to_grouped() #takes the list of data we have made and turns it into a dictionary that counts number of instences
+exit
+
+
+if opening == '2':  #instead of raw data, makes a dictionary with the name of a catigory and the number of instances with it.
+    name_number_list = []
+    finished_with_data_input =False
+    
+    while finished_with_data_input == False: #checks if finished with data input
+        data_input_name = input('\n Alright, please enter name of the catigory: ')
+
+        integer_checker()
+
+
+        name_number_list .append(data_input_name)
 
 
 
@@ -84,44 +132,9 @@ def integer_checker(data_input_amount, correction_string): #checks if data is in
 
 def UserInterface_DataInput(): # The initial user interface for when you need to add data to the project
     
-    opening = input('''Hello, what would you like to do? (type number to do so)
-    1. Enter data individually (name only)
-    2. Enter data with name and amount 
-    Enter Here: ''')
-    print()
-    
-    while opening != '1' and opening != '2':
-        opening = input('Please input 1 for individualy or 2 for catigory and amount: ')
-    
-    if opening =='1': #this part simply places your inputs into a list that can then be analysed at a later time
-                      #only adds raw data to be analysed
-        finished_with_data_input =False
-        while finished_with_data_input == False:
-            data_individual = input('Alright, please enter name of catigory item: ')
-            try:
-                type(int(data_individual)) == int
-                data_individual = int(data_individual)
-            except:
-                
-                Raw_input_data_list_individual.append(data_individual)
-                continue_input = input('Do you have more data to input? Y/N: ')
-                print()
-                c_i_upper =continue_input.upper()
-            
-            
-                if c_i_upper != 'Y' and c_i_upper != 'N':
-                    input ('Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
-                    print()
-                else:
-                    if c_i_upper == 'N':
-                        finished_with_data_input = True
-                    else:
-                        finished_with_data_input =False
-        print(Raw_input_data_list_individual)
-        
-        raw_data_to_grouped()
-
-   
+       
+                    
+                 
         
         #if opening == '2':
     if opening == '2':  #instead of raw data, makes a dictionary with the name of a catigory and the number of instances with it.
@@ -145,15 +158,15 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
             name_number_list = []
             continue_input = input('\n Do you have more data to input? Y/N: ')
             
-            c_i_upper =continue_input.upper()
+            continue_input =continue_input.upper()
             
             
             
-            if c_i_upper != 'Y' and c_i_upper != 'N':
-                while c_i_upper not in ['Y','N']:
-                    c_i_upper =input ('\n Improper response please type "Y" if you have more data or "N" if you do not have more data: ').upper()
+            if continue_input != 'Y' and continue_input != 'N':
+                while continue_input not in ['Y','N']:
+                    continue_input =input ('\n Improper response please type "Y" if you have more data or "N" if you do not have more data: ').upper()
                     print()
-                    if c_i_upper == 'N':
+                    if continue_input == 'N':
                         finished_with_data_input = True
                     else:
                         finished_with_data_input =False
@@ -161,7 +174,7 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
 
 
             else:
-                if c_i_upper == 'N':
+                if continue_input == 'N':
                     finished_with_data_input = True
                 else:
                     finished_with_data_input =False
