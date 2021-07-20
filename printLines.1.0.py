@@ -11,17 +11,20 @@ def printLines(num_of_lines, units ='unitless'): #unit must be a string
 
 
 def bar_graph(dic):
-    print(dic.items())
+    
     bar_graphic = ''
     for catigory, amount in dic.items():
-        for a in range(catigory):
-            count = ''
         
-            for i in range(amount):
-                count += '|'
-            bar_graphic += count + '\n'
-
-    pass
+        catigory_string = str(catigory)
+        amount_of_instences = amount
+        count =': '        
+        
+        for i in range(amount):
+            count += '|'
+            
+        line_string = catigory_string + ' -- ' + str(amount_of_instences) + count
+        bar_graphic += line_string +'\n'
+    return bar_graphic
 
 
 

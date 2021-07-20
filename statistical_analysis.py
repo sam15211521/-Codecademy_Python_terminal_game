@@ -50,16 +50,6 @@ def find_bar_graph(dic = data_dictionary_name_and_amount):#num_of_lines, units =
         bar_graphic += line_string +'\n'
     return bar_graphic
     
-    print('bar graph will make')
-    
-    #count = ''
-    
-    #for i in range(num_of_lines):
-    #    count += '|'
-    #return str(count) + '   ' + str(len(count)) +' ' +units
-    #pass
-
-
 
 def raw_data_printer():
     print('--------------')
@@ -112,21 +102,22 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
                 type(int(data_individual)) == int
                 data_individual = int(data_individual)
             except:
-                continue
-            Raw_input_data_list_individual.append(data_individual)
-            continue_input = input('Do you have more data to input? Y/N: ')
-            print()
-            c_i_upper =continue_input.upper()
-            
-            
-            if c_i_upper != 'Y' and c_i_upper != 'N':
-                input ('Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
+                
+                Raw_input_data_list_individual.append(data_individual)
+                continue_input = input('Do you have more data to input? Y/N: ')
                 print()
-            else:
-                if c_i_upper == 'N':
-                    finished_with_data_input = True
+                c_i_upper =continue_input.upper()
+            
+            
+                if c_i_upper != 'Y' and c_i_upper != 'N':
+                    input ('Improper response please type "Y" if you have more data or "N" if you do not have more data: ')
+                    print()
                 else:
-                    finished_with_data_input =False
+                    if c_i_upper == 'N':
+                        finished_with_data_input = True
+                    else:
+                        finished_with_data_input =False
+        print(Raw_input_data_list_individual)
         
         raw_data_to_grouped()
 
@@ -179,9 +170,9 @@ def UserInterface_DataInput(): # The initial user interface for when you need to
                 if type(int(catigory)) == int:
                     catigory = int(catigory)
             except:
-                continue
-            for i in range(value):
-                Raw_input_data_list_individual.append(catigory)
+                
+                for i in range(value):
+                    Raw_input_data_list_individual.append(catigory)
 
     raw_data_printer()
     correction()
@@ -371,9 +362,9 @@ def TypeofAnalysis():
     print(Raw_input_data_list_individual)
 
     if only_bar_and_mode == True:
-            standard_deviation()
-            mode()
-            show_all_data()
+            find_bar_graph()
+            find_mode()
+            
             
     else:
         for flag in analysis_choice_flags: #this part determins sets which analysis functions are called
@@ -388,29 +379,22 @@ def TypeofAnalysis():
             elif flag == 'Bar graph':
                 find_bar_graph()
 
-    #print(data_dictionary_name_and_amount)
     
-
-
-    
-    
-    #print(data_dictionary_name_and_amount)
-    #show_all_data()
-
-
-
 
 def show_all_data(): #this shows all the data analysis
     print('\n \n \n \n')
-    print(' First, here is your raw data \n \n {} \n {} \n \n'.format(Raw_input_data_list_individual, data_dictionary_name_and_amount ))
+    print('-------------\n First, here is your raw data: \n \n{} \n{} \n \n---\n'.format(Raw_input_data_list_individual, data_dictionary_name_and_amount ))
+    if bar_graph_flag == True:
+        print('Here is your data shown in a bar graph. \n \n{} \n---\n'.format(find_bar_graph()))
     if mean_flag ==True:
-        print('The mean of your data is: \n {} \n---\n'.format(find_mean()))
+        print('The mean of your data is: \n{} \n---\n'.format(find_mean()))
     if mode_flag ==True:
-        print('The mode of your data is: \n {} \n---\n'.format(find_mode()))
+        print('The mode of your data is: \n{} \n---\n'.format(find_mode()))
     if median_flag ==True:
-        print('The median of your data is: \n {} \n---\n'.format(find_median()))
+        print('The median of your data is: \n{} \n---\n'.format(find_median()))
     if standard_deviation_flag == True:
-        print('The standard deviation of your data is: \n {} \n---\n'.format(find_standard_deviation()))
+        print('The standard deviation of your data is: \n{} \n---\n'.format(find_standard_deviation()))
+
     
        
 
